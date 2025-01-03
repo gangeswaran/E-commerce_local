@@ -54,7 +54,7 @@ function MenuItems() {
       {shoppingViewHeaderMenuItems.map((menuItem) => (
         <Label
           onClick={() => handleNavigate(menuItem)}
-          className="text-sm font-medium cursor-pointer"
+          className="text-sm font-medium cursor-pointer transition-transform transform hover:scale-105"
           key={menuItem.id}
         >
           {menuItem.label}
@@ -88,7 +88,7 @@ function HeaderRightContent() {
           onClick={() => setOpenCartSheet(true)}
           variant="outline"
           size="icon"
-          className="relative"
+          className="relative shadow-lg transform hover:translate-y-[-2px]"
         >
           <ShoppingCart className="w-6 h-6" />
           <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
@@ -108,21 +108,27 @@ function HeaderRightContent() {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-black">
+          <Avatar className="bg-black transform hover:scale-110 shadow-md">
             <AvatarFallback className="bg-black text-white font-extrabold">
               {user?.userName[0].toUpperCase()}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="right" className="w-56">
+        <DropdownMenuContent
+          side="right"
+          className="w-56 shadow-xl bg-gradient-to-br from-gray-200 via-gray-300 to-gray-100"
+        >
           <DropdownMenuLabel>Logged in as {user?.userName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => navigate("/shop/account")}>
+          <DropdownMenuItem
+            onClick={() => navigate("/shop/account")}
+            className="hover:shadow-md"
+          >
             <UserCog className="mr-2 h-4 w-4" />
             Account
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout}>
+          <DropdownMenuItem onClick={handleLogout} className="hover:shadow-md">
             <LogOut className="mr-2 h-4 w-4" />
             Logout
           </DropdownMenuItem>
@@ -136,11 +142,12 @@ function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
+    <header className="sticky top-0 z-40 w-full border-b border-gray-400 bg-gradient-to-r from-red-500 via-purple-400 to-blue-400 py-4 shadow-lg">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
-          {/* <HousePlug className="h-6 w-6" /> */}
-          <span className="font-bold">Ecommerce</span>
+          <span className="font-bold text-white transform hover:scale-110 shadow-sm">
+            Ecommerce
+          </span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>
@@ -149,7 +156,7 @@ function ShoppingHeader() {
               <span className="sr-only">Toggle header menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-full max-w-xs">
+          <SheetContent side="left" className="w-full max-w-xs shadow-md">
             <MenuItems />
             <HeaderRightContent />
           </SheetContent>

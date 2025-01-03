@@ -1,7 +1,4 @@
 import { Button } from "@/components/ui/button";
-import bannerOne from "../../assets/banner-1.webp";
-import bannerTwo from "../../assets/banner-2.webp";
-import bannerThree from "../../assets/banner-3.webp";
 import {
   Airplay,
   BabyIcon,
@@ -54,6 +51,9 @@ function ShoppingHome() {
   );
   const { featureImageList } = useSelector((state) => state.commonFeature);
 
+
+
+  
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
@@ -61,7 +61,6 @@ function ShoppingHome() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();
-
   function handleNavigateToListingPage(getCurrentItem, section) {
     sessionStorage.removeItem("filters");
     const currentFilter = {
@@ -100,7 +99,7 @@ function ShoppingHome() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % featureImageList.length);
-    }, 15000);
+    }, 2000);
 
     return () => clearInterval(timer);
   }, [featureImageList]);
@@ -121,7 +120,7 @@ function ShoppingHome() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-blue-100">
       <div className="relative w-full h-[600px] overflow-hidden">
         {featureImageList && featureImageList.length > 0
           ? featureImageList.map((slide, index) => (

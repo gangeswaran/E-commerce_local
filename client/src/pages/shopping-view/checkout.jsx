@@ -1,5 +1,5 @@
 import Address from "@/components/shopping-view/address";
-import img from "../../assets/account.jpg";
+import img from "../../assets/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
 import { Button } from "@/components/ui/button";
@@ -86,7 +86,7 @@ function ShoppingCheckout() {
         toast({
           title: "Order placed successfully!",
         });
-        Navigate("/shop/account");
+        Navigate("/shop/payment-success");
 
       } else {
         toast({
